@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx-3
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx-3
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        resources:
+          requests:
+             cpu: 100m
+             memory: 100Mi
+          limits:
+             cpu: 300m
+             memory: 300Mi
+        ports:
+        - containerPort: 80
