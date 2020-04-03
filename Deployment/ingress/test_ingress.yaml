@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: webapp-ingress
-  namespace: ingress-nginx
+  namespace: app-namespace
 spec:
   rules:
   - host: my.kubernetes.example
