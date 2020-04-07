@@ -6,3 +6,29 @@ metadata:
 data:
   SPECIAL_LEVEL: One
   SPECIAL_TYPE: Two
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx-3
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-nginx-3
+    spec:
+      volumes:
+        - name: config-data-volume
+          configMap:
+            name: app-config
+      containers:
+      - name: my-nginx
+        image: nginx
+        volumeMounts:
+        - mountPath: /config
+          name: config-data-volume
